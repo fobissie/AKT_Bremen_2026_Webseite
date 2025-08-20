@@ -1,0 +1,109 @@
+:root{
+  --bg:#F4F4F2;               /* Cremeweiß Hintergrund (global) */
+  --highlight:#7DBAC8;        /* Azur für gezielte Highlights/Flächen */
+  --text:#001823;             /* Marineblau (dunkel) Text */
+  --muted:#6B8599;            /* gedämpftes Blau für Sekundärtexte */
+  --card:rgba(255,255,255,0.96); /* helle Karten */
+  --border:rgba(0,24,35,0.12); /* dezente, dunkle Border auf hellem BG */
+  --gradient:linear-gradient(135deg,#003B5C,#0077A8,#7DBAC8); /* Marine → Blau → Helles Azur */
+  --accent:#003B5C;           /* Marineblau Akzent (Buttons, Headlines) */
+  --ok:#2ECC71;
+  --no:#D96C6C;
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--text);background:var(--bg);line-height:1.55}
+.container{max-width:1100px;margin:0 auto;padding:0 20px}
+.center{text-align:center}.lead{color:var(--muted)} a{color:#0077A8;text-decoration:none} a:hover{text-decoration:underline}
+.site-header{position:sticky;top:0;z-index:50;backdrop-filter:saturate(140%) blur(8px);background:rgba(0,24,35,0.7);border-bottom:1px solid var(--border)}
+.nav{display:flex;align-items:center;justify-content:space-between;min-height:64px}.brand{font-weight:800;letter-spacing:0.3px}
+.menu a{margin-left:22px}.burger{display:none;background:none;border:0;font-size:26px;color:var(--text)}
+.hero{position:relative;min-height:78vh;display:grid;align-items:center;background:
+linear-gradient(180deg, rgba(0,24,35,0.65), rgba(0,24,35,0.65)),
+url('https://images.unsplash.com/photo-1511447333015-45b65e60f6d0?auto=format&fit=crop&w=1600&q=60') center/cover no-repeat;}
+/* High-contrast text in the Hero only */
+.hero, .hero .subtitle, .hero .slogan { color: #F4F4F2; }
+.hero h1 { color:#F4F4F2; text-shadow: 0 2px 12px rgba(0,0,0,0.45); }
+.hero h1 .gradient{
+  text-shadow:none;
+  paint-order:stroke fill;
+}
+.hero .slogan { color:#F4F4F2; }
+.hero .overlay{position:absolute;inset:0;background:radial-gradient(1000px 500px at 70% 10%, rgba(125,186,200,0.35), transparent)}
+.hero-inner{position:relative;padding:90px 0;text-align:center}
+h1{font-size:clamp(32px,6vw,72px);margin:0 0 10px 0}.subtitle{font-size:clamp(16px,2.2vw,22px);color:var(--muted);margin-bottom:8px}
+.slogan{margin:4px 0 18px 0;font-weight:700;letter-spacing:0.3px;color:#001823; /* Blauton für Slogan */}
+.gradient{background:var(--gradient);-webkit-background-clip:text;background-clip:text;color:transparent}
+.cta-row{display:flex;gap:14px;justify-content:center}
+.btn{display:inline-block;padding:12px 18px;border-radius:12px;border:1px solid var(--border);font-weight:600}
+.btn.primary{background:var(--gradient);color:#fff;border:0}.btn.outline{background:rgba(255,255,255,0.14);color:#F4F4F2;border-color:rgba(255,255,255,0.25)}.btn.outline:hover{background:rgba(255,255,255,0.22);}
+.btn.full{width:100%;text-align:center}
+.intro{max-width:900px;margin:16px auto 0;color:#F4F4F2;background:rgba(0,0,0,0.35);border:1px solid rgba(255,255,255,0.2);border-radius:14px;padding:14px 16px}
+.intro p{margin:8px 0}
+.section{padding:70px 0}.section.light{background:#FFFFFF}
+.schedule{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:24px}
+.day{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:18px}.day h3{margin-top:0;font-size:18px}
+.day ul{list-style:none;padding:0;margin:0}.day li{display:flex;gap:12px;padding:10px 0;border-bottom:1px dashed var(--border)}.day li:last-child{border-bottom:0}
+time{font-variant-numeric:tabular-nums;color:#0077A8}
+.tiers{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:24px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px;position:relative;box-shadow:0 20px 40px rgba(0,0,0,0.25)}
+.tier h3{margin:0 0 6px 0;font-size:22px}.price{margin:0 0 16px 0;color:#35516A;font-weight:600}
+.ribbon{position:absolute;top:12px;right:-6px;padding:4px 10px;background:var(--gradient);color:#fff;border-radius:8px;font-size:12px;font-weight:800;letter-spacing:0.2px;box-shadow:0 6px 18px rgba(0,0,0,0.35)}
+.card.accent{border-color:rgba(46,139,116,0.6);outline:2px solid rgba(46,139,116,0.35)}
+.features{list-style:none;margin:0 0 16px 0;padding:0}.features li{padding:7px 0 7px 26px;position:relative;border-bottom:1px dashed var(--border)}.features li:last-child{border-bottom:0}
+.features li.ok::before{content:"✔";color:var(--ok);position:absolute;left:0;top:7px;font-weight:800}
+.features li.no{opacity:0.65}.features li.no::before{content:"✖";color:var(--no);position:absolute;left:0;top:7px;font-weight:800}
+.addon{margin:10px 0 14px 0;font-size:14px;color:var(--muted)} .mini{font-size:12px;color:var(--muted)}
+.contact .form{max-width:860px;margin:0 auto}.form .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+label{display:flex;flex-direction:column;gap:6px;font-size:14px;color:#35516A}
+input, select, textarea{width:100%;padding:12px 12px;border-radius:12px;border:1px solid var(--border);background:rgba(255,255,255,0.04);color:var(--text);outline:none}
+input:focus, select:focus, textarea:focus{border-color:#0077A8}
+label.full{grid-column:1/-1}
+.footer{border-top:1px solid var(--border);background:#001823;padding:24px 0; color:#F4F4F2}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.footer a{color:#7DBAC8}
+@media (max-width:1200px){.tiers{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:720px){.schedule{grid-template-columns:1fr}.tiers{grid-template-columns:1fr}.form .grid{grid-template-columns:1fr}.menu{display:none}.burger{display:block}}
+.contact .form button {
+  margin-top: 20px; /* Abstand nach oben */
+}
+/* leicht hervorgehoben */
+.card.accent-1 {
+  border-color: rgba(46,139,116,0.6);
+  outline: 2px solid rgba(46,139,116,0.35);
+}
+
+/* stärker hervorgehoben */
+.card.accent-2 {
+  border-color: #7BDAC8;
+  outline: 3px solid rgba(123,218,200,0.7);
+  box-shadow: 0 0 20px rgba(123,218,200,0.4);
+}
+
+/* Premium: besonders leuchtend */
+.card.accent-3 {
+  border-color: gold;
+  outline: 3px solid rgba(255,215,0,0.8);
+  box-shadow: 0 0 25px rgba(255,215,0,0.6);
+}
+
+/* Zwei helle Abschnitte optisch zusammenziehen */
+.section.light + .section.light{
+  padding-top: 28px;      /* weniger Platz oben am zweiten Abschnitt */
+  margin-top: -20px;      /* zieht die Blöcke zusammen */
+}
+
+/* Überschrift-Abstand korrigieren */
+.section.light + .section.light h2{
+  margin-top: 0;
+}
+
+/* Navigation besser lesbar */
+.site-header .brand,
+.site-header .menu a {
+  color: #F4F4F2;              /* helles Cremeweiß */
+  font-weight: 600;            /* etwas kräftiger */
+}
+
+.site-header .menu a:hover {
+  color: var(--highlight);     /* Azur beim Hover für Akzent */
+}

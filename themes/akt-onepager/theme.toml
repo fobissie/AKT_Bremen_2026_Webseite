@@ -1,0 +1,4 @@
+name = "AKT OnePager"
+license = "MIT"
+description = "Hugo Single-Page Landing – AKT Bremen"
+min_version = "0.120.0"

@@ -1,0 +1,50 @@
+tiers:
+  - name: "Steuermann"
+    ribbon: "Einstieg"
+    accent: "accent-1"
+    features:
+      - { class: "ok", text: "Logo auf den Badges der Teilnehmenden" }
+      - { class: "ok", text: "Printwerbung & Goodies in Begrüßungstüten" }
+      - { class: "ok", text: "Präsenz in der AKT-App und auf der Website" }
+      - { class: "no", text: "Social Media Promotion" }
+      - { class: "no", text: "Stellenanzeige online & offline" }
+      - { class: "no", text: "Sponsoring/Branding Banner" }
+      - { class: "no", text: "Business Night" }
+      - { class: "no", text: "Businessdinner" }
+      - { class: "no", text: "Tagesevent" }
+  - name: "Offizier (FR)"
+    accent: "accent-2"
+    features:
+      - { class: "ok", text: "Logo auf den Badges der Teilnehmenden" }
+      - { class: "ok", text: "Printwerbung & Goodies in Begrüßungstüten" }
+      - { class: "ok", text: "Präsenz in der AKT-App und auf der Website" }
+      - { class: "ok", text: "Social Media Promotion" }
+      - { class: "ok", text: "Stellenanzeige online & offline" }
+      - { class: "ok", text: "Sponsoring/Branding Banner" }
+      - { class: "ok", text: "Business Night" }
+      - { class: "no", text: "Businessdinner" }
+      - { class: "no", text: "Tagesevent" }
+  - name: "Offizier (SA)"
+    accent: "accent-2"
+    features:
+      - { class: "ok", text: "Logo auf den Badges der Teilnehmenden" }
+      - { class: "ok", text: "Printwerbung & Goodies in Begrüßungstüten" }
+      - { class: "ok", text: "Präsenz in der AKT-App und auf der Website" }
+      - { class: "ok", text: "Social Media Promotion" }
+      - { class: "ok", text: "Stellenanzeige online & offline" }
+      - { class: "ok", text: "Sponsoring/Branding Banner" }
+      - { class: "no", text: "Business Night" }
+      - { class: "ok", text: "Businessdinner" }
+      - { class: "no", text: "Tagesevent" }
+  - name: "Kapitän"
+    accent: "accent-3"
+    features:
+      - { class: "ok", text: "Logo auf den Badges der Teilnehmenden" }
+      - { class: "ok", text: "Printwerbung & Goodies in Begrüßungstüten" }
+      - { class: "ok", text: "Präsenz in der AKT-App und auf der Website" }
+      - { class: "ok", text: "Social Media Promotion" }
+      - { class: "ok", text: "Stellenanzeige online & offline" }
+      - { class: "ok", text: "Sponsoring/Branding Banner" }
+      - { class: "ok", text: "Business Night" }
+      - { class: "ok", text: "Businessdinner" }
+      - { class: "ok", text: "Tagesevent" }

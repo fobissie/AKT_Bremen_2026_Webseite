@@ -1,0 +1,36 @@
+<section class="section light" id="kontakt">
+  <div class="container contact">
+    <h2 class="center">Kontakt</h2>
+    <p class="center lead">Fragen zu Programm oder Sponsoring? Wir freuen uns auf Ihre Nachricht.</p>
+    <div class="ansprechpartner card" style="margin-bottom:2rem;">
+      <div class="grid" style="display:grid; grid-template-columns: 1fr 1fr; align-items:center; column-gap:5rem;">
+        <div style="flex:1; justify-self:end;">
+          <img src="/images/maria-schmid.jpg" alt="Maria Schmid" style="max-width:100%; height:auto; border-radius:4px;">
+        </div>
+        <div style="flex:1; justify-self:start;">
+          <h3>Ihre Ansprechpartnerin</h3>
+          <p><strong>Maria Schmid</strong></p>
+          <p><a href="mailto:maria.schmid@active-bremen.de">maria.schmid@active-bremen.de</a></p>
+          <p>+49 175 7513 603</p>
+        </div>
+      </div>
+    </div>
+    <form class="card form" action="mailto:{{ .Site.Params.contact.email }}" method="post" enctype="text/plain">
+      <div class="grid">
+        <label>Firma*<input required name="firma" placeholder="Unternehmensname" /></label>
+        <label>Kontaktperson*<input required name="kontakt" placeholder="Vor- und Nachname" /></label>
+        <label>E-Mail*<input required type="email" name="email" placeholder="name@firma.de" /></label>
+        <label>Interesse an
+          <select name="paket">
+            {{ range .Site.Data.packages.tiers }}
+            <option>{{ .name }}</option>
+            {{ end }}
+          </select>
+        </label>
+        <label class="full">Nachricht<textarea name="nachricht" rows="4" placeholder="Kurze Beschreibung Ihres Ziels (Keynote, Workshop, Recruiting …)"></textarea></label>
+      </div>
+      <button class="btn primary">Anfrage senden</button>
+      <p class="mini">Mit * markierte Felder sind Pflichtfelder.</p>
+    </form>
+  </div>
+</section>

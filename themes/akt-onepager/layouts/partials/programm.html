@@ -1,0 +1,17 @@
+<section class="section light" id="programm">
+  <div class="container">
+    <h2 class="center">Das Programm</h2>
+    <div class="schedule">
+      {{ range .Site.Data.program.days }}
+      <div class="day">
+        <h3>{{ .date }}</h3>
+        <ul>
+          {{ range .items }}
+          <li><time>{{ .time }}</time> {{ .title }}</li>
+          {{ end }}
+        </ul>
+      </div>
+      {{ end }}
+    </div>
+  </div>
+</section>

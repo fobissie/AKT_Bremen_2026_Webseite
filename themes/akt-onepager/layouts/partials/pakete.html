@@ -1,0 +1,23 @@
+<section class="section" id="pakete">
+  <div class="container">
+    <h2 class="center">Werden Sie Teil der Crew</h2>
+    <p class="center lead">Wir bieten vier verschiedene Crew-Ränge an, die sich in Preis und Umfang unterscheiden. Wählen Sie Ihr passendes Paket und werden Sie Teil der Crew des AKT 2026 in Bremen.</p>
+    <div class="tiers">
+      {{ range .Site.Data.packages.tiers }}
+      {{ $ac := .accent }}
+      <article class="card tier {{ if (and (ne (printf "%T" $ac) "bool") (ne $ac "")) }}{{ $ac }}{{ else }}{{ if $ac }}accent{{ end }}{{ end }}">
+        {{ with .ribbon }}<div class="ribbon">{{ . }}</div>{{ end }}
+        <h3>{{ .name }}</h3>
+        <p class="price">{{ $.Site.Params.pricing | default "Preis auf Anfrage" }}</p>
+        <ul class="features">
+          {{ range .features }}
+            <li class="{{ .class }}">{{ .text }}</li>
+          {{ end }}
+        </ul>
+        <a class="btn primary full" href="mailto:{{ $.Site.Params.contact.email }}?subject=Sponsoring%20{{ replace .name " " "%20" }}%20AKT">Jetzt anfragen</a>
+      </article>
+      {{ end }}
+    </div>
+    <p class="center mini">Individuelle Pakete auf Anfrage. <a href="#kontakt">Kontakt aufnehmen</a>.</p>
+  </div>
+</section>

@@ -1,0 +1,20 @@
+baseURL = "/"
+languageCode = "de"
+title = "Arbeitskreistreffen – Bremen"
+theme = "akt-onepager"
+
+[params]
+brand = "AKT Bremen"
+description = "Dreitägiges Arbeitskreistreffen studentischer Unternehmensberatungen – Programm, Sponsoring-Pakete und Kontakt."
+pricing = "Preis auf Anfrage"
+
+[params.event]
+dateRange = "09.–11. Januar 2026 · Bremen"
+
+[params.hero]
+title = "Arbeitskreistreffen"
+highlight = "des BDSU"
+motto = "Hanseatisch vernetzen"
+
+[params.contact]
+email = "test@active.com"
