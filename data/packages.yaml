@@ -38,6 +38,7 @@ tiers:
       - { class: "no", text: "Tagesevent" }
   - name: "Kapitän"
     accent: "accent-3"
+    ribbon: "mega krass"
     features:
       - { class: "ok", text: "Logo auf den Badges der Teilnehmenden" }
       - { class: "ok", text: "Printwerbung & Goodies in Begrüßungstüten" }
