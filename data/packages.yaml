@@ -1,7 +1,6 @@
 tiers:
   - name: "Steuermann"
     ribbon: "Einstieg"
-    accent: "accent-1"
     features:
       - { class: "ok", text: "Logo auf den Badges der Teilnehmenden" }
       - { class: "ok", text: "Printwerbung & Goodies in Begrüßungstüten" }
@@ -13,7 +12,6 @@ tiers:
       - { class: "no", text: "Businessdinner" }
       - { class: "no", text: "Tagesevent" }
   - name: "Offizier (FR)"
-    accent: "accent-2"
     features:
       - { class: "ok", text: "Logo auf den Badges der Teilnehmenden" }
       - { class: "ok", text: "Printwerbung & Goodies in Begrüßungstüten" }
@@ -25,7 +23,6 @@ tiers:
       - { class: "no", text: "Businessdinner" }
       - { class: "no", text: "Tagesevent" }
   - name: "Offizier (SA)"
-    accent: "accent-2"
     features:
       - { class: "ok", text: "Logo auf den Badges der Teilnehmenden" }
       - { class: "ok", text: "Printwerbung & Goodies in Begrüßungstüten" }
@@ -36,9 +33,10 @@ tiers:
       - { class: "no", text: "Business Night" }
       - { class: "ok", text: "Businessdinner" }
       - { class: "no", text: "Tagesevent" }
+  
   - name: "Kapitän"
     accent: "accent-3"
-    ribbon: "mega krass"
+    ribbon: "Premium"
     features:
       - { class: "ok", text: "Logo auf den Badges der Teilnehmenden" }
       - { class: "ok", text: "Printwerbung & Goodies in Begrüßungstüten" }

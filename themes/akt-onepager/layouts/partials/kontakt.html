@@ -15,19 +15,23 @@
         </div>
       </div>
     </div>
-    <form class="card form" action="mailto:{{ .Site.Params.contact.email }}" method="post" enctype="text/plain">
+    <form id="kontakt-form" class="card form" action="mailto:{{ .Site.Params.contact.email }}" method="post" enctype="text/plain">
       <div class="grid">
-        <label>Firma*<input required name="firma" placeholder="Unternehmensname" /></label>
-        <label>Kontaktperson*<input required name="kontakt" placeholder="Vor- und Nachname" /></label>
-        <label>E-Mail*<input required type="email" name="email" placeholder="name@firma.de" /></label>
-        <label>Interesse an
-          <select name="paket">
+        <div class="full" style="margin:0 0 1rem 0;">
+          <p><strong>Interesse an:</strong></p>
+          <div class="paket-options">
             {{ range .Site.Data.packages.tiers }}
-            <option>{{ .name }}</option>
+              <label class="paket-btn">
+                <input type="radio" name="paket" value="{{ .name }}" required>
+                <span class="paket-title">{{ .name }}</span>
+              </label>
             {{ end }}
-          </select>
-        </label>
-        <label class="full">Nachricht<textarea name="nachricht" rows="4" placeholder="Kurze Beschreibung Ihres Ziels (Keynote, Workshop, Recruiting …)"></textarea></label>
+          </div>
+        </div>
+       <!-- <label>Firma*<input required name="firma" placeholder="Unternehmensname" /></label>
+        <label>Kontaktperson*<input required name="kontakt" placeholder="Vor- und Nachname" /></label>
+        <label>E-Mail*<input required type="email" name="email" placeholder="name@firma.de" /></label> -->
+        <label class="full">Nachricht<textarea rows="4" placeholder="Kurze Beschreibung Ihres Ziels (Keynote, Workshop, Recruiting …)"></textarea></label>
       </div>
       <button class="btn primary">Anfrage senden</button>
       <p class="mini">Mit * markierte Felder sind Pflichtfelder.</p>

@@ -10,6 +10,12 @@
   --ok:#2ECC71;
   --no:#D96C6C;
 }
+
+/* Einheitliche Schriftart mit systemnahen Fallbacks (kein Google Fonts nötig) */
+body, h1, h2, h3, h4, h5, h6, p, a, li, input, textarea, button, label {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
 *{box-sizing:border-box} html{scroll-behavior:smooth}
 body{margin:0;font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--text);background:var(--bg);line-height:1.55}
 .container{max-width:1100px;margin:0 auto;padding:0 20px}
@@ -18,8 +24,7 @@ body{margin:0;font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Arial,
 .nav{display:flex;align-items:center;justify-content:space-between;min-height:64px}.brand{font-weight:800;letter-spacing:0.3px}
 .menu a{margin-left:22px}.burger{display:none;background:none;border:0;font-size:26px;color:var(--text)}
 .hero{position:relative;min-height:78vh;display:grid;align-items:center;background:
-linear-gradient(180deg, rgba(0,24,35,0.65), rgba(0,24,35,0.65)),
-url('https://images.unsplash.com/photo-1511447333015-45b65e60f6d0?auto=format&fit=crop&w=1600&q=60') center/cover no-repeat;}
+linear-gradient(180deg, rgba(0,24,35,0.65), rgba(0,24,35,0.65));}
 /* High-contrast text in the Hero only */
 .hero, .hero .subtitle, .hero .slogan { color: #F4F4F2; }
 .hero h1 { color:#F4F4F2; text-shadow: 0 2px 12px rgba(0,0,0,0.45); }
@@ -45,7 +50,7 @@ h1{font-size:clamp(32px,6vw,72px);margin:0 0 10px 0}.subtitle{font-size:clamp(16
 .day ul{list-style:none;padding:0;margin:0}.day li{display:flex;gap:12px;padding:10px 0;border-bottom:1px dashed var(--border)}.day li:last-child{border-bottom:0}
 time{font-variant-numeric:tabular-nums;color:#0077A8}
 .tiers{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:24px}
-.card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px;position:relative;box-shadow:0 20px 40px rgba(0,0,0,0.25)}
+.card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:22px;position:relative;box-shadow:0 20px 40px rgba(0,0,0,0.25);overflow:visible}
 .tier h3{margin:0 0 6px 0;font-size:22px}.price{margin:0 0 16px 0;color:#35516A;font-weight:600}
 .ribbon{position:absolute;top:12px;right:-6px;padding:4px 10px;background:var(--gradient);color:#fff;border-radius:8px;font-size:12px;font-weight:800;letter-spacing:0.2px;box-shadow:0 6px 18px rgba(0,0,0,0.35)}
 .card.accent{border-color:rgba(46,139,116,0.6);outline:2px solid rgba(46,139,116,0.35)}
@@ -106,4 +111,72 @@ label.full{grid-column:1/-1}
 
 .site-header .menu a:hover {
   color: var(--highlight);     /* Azur beim Hover für Akzent */
+}
+/* Uhrzeiten im Programm */
+.schedule time {
+  color: inherit;      /* gleiche Farbe wie normaler Text */
+  text-decoration: none; /* keine Unterstreichung */
+  font-weight: 600;      /* optional: etwas fetter, damit sie sich abheben */
+}
+
+/* Lesbare Typo für Rechtstexte */
+.prose{font-size:16px; line-height:1.75; color:var(--text)}
+.prose h2,.prose h3{margin:1.25rem 0 0.5rem}
+.prose p,.prose ul,.prose ol{margin:0.75rem 0}
+.prose ul{padding-left:1.25rem}
+.prose a{color:#0077A8}
+
+/* Paketauswahl als große Buttons (Kontaktformular) */
+.paket-options{
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:12px;
+  margin-top:6px;
+}
+@media (max-width:1024px){ .paket-options{ grid-template-columns:repeat(3, 1fr); } }
+@media (max-width:780px){ .paket-options{ grid-template-columns:repeat(2, 1fr); } }
+@media (max-width:480px){ .paket-options{ grid-template-columns:1fr; } }
+
+.paket-btn{
+  position:relative;
+  display:block;
+  cursor:pointer;
+  user-select:none;
+}
+.paket-btn input{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  opacity:0;
+  pointer-events:none;
+}
+.paket-btn .paket-title{
+  display:flex;
+  flex:1;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  font-weight:800;
+  letter-spacing:0.2px;
+  padding:16px 18px;
+  border-radius:14px;
+  border:1px solid var(--border);
+  background:#fff;
+  color:#001823;
+  min-width: 160px;
+  min-height: 60px;
+}
+/* Hover/Active/Checked/Fokus Zustände */
+.paket-btn:hover .paket-title{ transform:translateY(-1px); }
+.paket-btn:active .paket-title{ transform:translateY(0); }
+.paket-btn input:checked + .paket-title{
+  background:var(--gradient);
+  color:#fff;
+  border-color:transparent;
+  box-shadow:0 14px 28px rgba(0,59,92,0.25);
+}
+.paket-btn input:focus + .paket-title{
+  outline:3px solid rgba(0,119,168,0.45);
+  outline-offset:3px;
 }

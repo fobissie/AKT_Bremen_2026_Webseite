@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{{ .Site.Title }}</title>
   {{ with .Site.Params.description }}<meta name="description" content="{{ . }}">{{ end }}
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
   {{ if hugo.IsServer }}
     {{/*  Development: no SRI/fingerprint to avoid integrity cache issues  */}}
@@ -17,6 +15,7 @@
     {{ $css := resources.Get "css/styles.css" | fingerprint }}
     <link rel="stylesheet" href="{{ $css.Permalink }}" integrity="{{ $css.Data.Integrity }}">
   {{ end }}
+  <link rel="icon" href="/favicon.png" type="image/png">
 </head>
 <body>
   {{ partial "header.html" . }}
