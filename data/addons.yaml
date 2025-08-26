@@ -1,0 +1,16 @@
+addons:
+  - name: "Sponsoring/Branding FotoBox"
+    limited: true
+    applies: "alle Pakete"
+  - name: "Unternehmenspräsentation / Keynote"
+    limited: false
+    applies: "alle Pakete"
+  - name: "Tagesevents / Workshops"
+    limited: false
+    applies: "für Nicht-Premium"
+    examples:
+      - "Schnitzeljagd"
+      - "Escape Room"
+      - "Cooking Session"
+      - "Krav Maga"
+    note: "*Zubuchbar in Kombination mit einem Sponsoring-Paket"

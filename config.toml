@@ -4,7 +4,7 @@ title = "Arbeitskreistreffen – Bremen"
 theme = "akt-onepager"
 
 [params]
-brand = "AKT Bremen"
+brand = "Active Bremen e.V."
 description = "Dreitägiges Arbeitskreistreffen studentischer Unternehmensberatungen – Programm, Sponsoring-Pakete und Kontakt."
 pricing = "Preis auf Anfrage"
 
@@ -17,4 +17,4 @@ highlight = "des BDSU"
 motto = "Hanseatisch vernetzen"
 
 [params.contact]
-email = "test@active.com"
+email = "annamaria.schmid@active-bremen.de"

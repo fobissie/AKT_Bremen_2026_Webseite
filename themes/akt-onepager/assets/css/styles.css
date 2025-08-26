@@ -133,6 +133,7 @@ label.full{grid-column:1/-1}
   gap:12px;
   margin-top:6px;
 }
+
 @media (max-width:1024px){ .paket-options{ grid-template-columns:repeat(3, 1fr); } }
 @media (max-width:780px){ .paket-options{ grid-template-columns:repeat(2, 1fr); } }
 @media (max-width:480px){ .paket-options{ grid-template-columns:1fr; } }
@@ -179,4 +180,35 @@ label.full{grid-column:1/-1}
 .paket-btn input:focus + .paket-title{
   outline:3px solid rgba(0,119,168,0.45);
   outline-offset:3px;
+}
+
+/* Badge / Hinweis */
+.badge{display:inline-block;padding:4px 8px;border-radius:999px;font-size:12px;font-weight:700}
+.badge-warn{background:gold;color:#001823;border:1px solid rgba(0,0,0,0.08)}
+
+/* Tiers-Grid fallback (falls nicht vorhanden) */
+.tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:16px}
+#pakete .tier.centered-last { grid-column: 2 / 3; justify-self: center; }
+
+.hero {
+  background-image: url("/images/sailboats.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative; /* wichtig für overlay */
+}
+
+.hero .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.45); /* Schwarz mit 45% Transparenz */
+  z-index: 1;
+}
+
+.hero .container.hero-inner {
+  position: relative;
+  z-index: 2; /* Inhalte über dem Overlay */
 }

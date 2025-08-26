@@ -2,11 +2,11 @@ days:
   - date: "Freitag, 09.01.2026"
     items:
       - { time: "13:00", title: "Eröffnungsplenum" }
-      - { time: "19:00", title: "Company Night" }
+      - { time: "19:00", title: "Business Night" }
   - date: "Samstag, 10.01.2026"
     items:
       - { time: "09:00", title: "Workshops" }
-      - { time: "15:00", title: "JE2JE" }
+      - { time: "15:00", title: "Tagesevents" }
       - { time: "19:00", title: "Business Dinner" }
       - { time: "21:00", title: "Mottoparty" }
   - date: "Sonntag, 11.01.2026"
