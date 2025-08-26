@@ -3,14 +3,25 @@
     <h2 class="center">Werden Sie Teil der Crew</h2>
     <p class="center lead" style="margin-bottom:2rem;">Wir bieten vier verschiedene Crew-Ränge an, die sich in Preis und Umfang unterscheiden. Wählen Sie Ihr passendes Paket und werden Sie Teil der Crew des AKT 2026 in Bremen.</p>
    
-    {{/* Identify featured tier: prefer data flag .featured, fallback to name == "Kapitän" */}}
+    {{/* Identify featured tier: prefer data flag .featured (bool or map.enabled), fallback to name == "Kapitän" */}}
     {{ $tiers := .Site.Data.packages.tiers }}
     {{ $featuredList := where $tiers "featured" true }}
     {{ if not (gt (len $featuredList) 0) }}
       {{ $featuredList = where $tiers "name" "Kapitän" }}
     {{ end }}
-    {{ $featured := index $featuredList 0 }}
-    {{ $rest := where $tiers "name" "ne" (cond $featured $featured.name "___none___") }}
+
+    {{/* Safely pick the first featured tier if available */}}
+    {{ $featured := nil }}
+    {{ if gt (len $featuredList) 0 }}
+      {{ $featured = index $featuredList 0 }}
+    {{ end }}
+
+    {{/* Exclude the featured tier by name when rendering the rest */}}
+    {{ $excludeName := "" }}
+    {{ with $featured }}
+      {{ $excludeName = .name }}
+    {{ end }}
+    {{ $rest := where $tiers "name" "ne" $excludeName }}
 
     {{ if $featured }}
     <div class="tiers featured-tier" style="display:flex; justify-content:center; margin-bottom:2rem;">
