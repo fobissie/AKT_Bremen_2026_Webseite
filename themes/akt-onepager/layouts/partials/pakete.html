@@ -27,7 +27,7 @@
       <article class="card tier featured {{ if (and (ne (printf "%T" $ac) "bool") (ne $ac "")) }}{{ $ac }}{{ else }}{{ if $ac }}accent{{ end }}{{ end }}" style="max-width: 420px; width:100%;"> 
         {{ with $featured.ribbon }}<div class="ribbon">{{ . }}</div>{{ else }}<div class="ribbon">Empfehlung</div>{{ end }}
         <h3 style="font-size:1.8rem; margin-top:0;">{{ $featured.name }}</h3>
-        <ul class="features">
+        <ul class="features" style="margin:0; padding-left:1.1rem; flex:1 1 auto;">
           {{ range $featured.features }}
             <li class="{{ .class }}">{{ .text }}</li>
           {{ end }}
@@ -37,13 +37,13 @@
     </div>
     {{ end }}
 
-    <div class="tiers" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; width: 100%; justify-content: center;">
+    <div class="tiers" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; width: 100%; align-items: stretch;">
       {{ range $index, $tier := $rest }}
       {{ $ac := $tier.accent }}
-      <article class="card tier {{ if (and (ne (printf "%T" $ac) "bool") (ne $ac "")) }}{{ $ac }}{{ else }}{{ if $ac }}accent{{ end }}{{ end }}">
+      <article class="card tier {{ if (and (ne (printf "%T" $ac) "bool") (ne $ac "")) }}{{ $ac }}{{ else }}{{ if $ac }}accent{{ end }}{{ end }}" style="display:flex; flex-direction:column; height:100%;">
         {{ with $tier.ribbon }}<div class="ribbon">{{ . }}</div>{{ end }}
         <h3>{{ $tier.name }}</h3>
-        <ul class="features">
+        <ul class="features" style="margin:0; padding-left:1.1rem; flex:1 1 auto;">
           {{ range $tier.features }}
             <li class="{{ .class }}">{{ .text }}</li>
           {{ end }}
@@ -58,9 +58,9 @@
     <h2 class="center">Zubuchbare Pakete</h2>
     <p class="center lead" style="margin-bottom:2rem;">Add-ons, die zu einem Sponsoring-Paket hinzubuchbar sind.</p>
 
-    <div class="tiers" style="display:grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; align-items: stretch;">
+    <div class="tiers" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; align-items: stretch;">
       {{ range .Site.Data.addons.addons }}
-      <article class="card tier addon" style="position:relative; display:flex; flex-direction:column; padding:1.25rem; min-height: 260px;">
+      <article class="card tier addon" style="position:relative; display:flex; flex-direction:column; padding:1.25rem; min-height: 260px; height:100%;">
         {{ if .limited }}
           <span class="badge badge-warn" style="position:absolute; top:12px; right:12px;">Limitiert</span>
         {{ end }}
