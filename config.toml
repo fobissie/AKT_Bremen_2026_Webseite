@@ -18,3 +18,6 @@ motto = "Hanseatisch vernetzen"
 
 [params.contact]
 email = "annamaria.schmid@active-bremen.de"
+
+[params.integrations]
+contact_webhook = "https://default7a3766ba35434e41b4576ae9365408.9c.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/5a4aff74215642f690658185aee199f5/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=55BFonx_JGNimcNRSH9mo8AeZSpCWtYnktmWFbreVLY" 

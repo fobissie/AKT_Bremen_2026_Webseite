@@ -3,7 +3,7 @@
     <h2 class="center">Kontakt</h2>
     <p class="center lead">Fragen zu Programm oder Sponsoring? Wir freuen uns auf Ihre Nachricht.</p>
     <div class="ansprechpartner card" style="margin-bottom:2rem;">
-      <div class="grid" style="display:grid; grid-template-columns: 1fr 1fr; align-items:center; column-gap:5rem;">
+      <div class="grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); align-items:center; column-gap:1.5rem; row-gap:1rem;">
         <div style="flex:1; justify-self:end;">
           <img src="/images/maria-schmid.jpg" alt="Maria Schmid" style="max-width:100%; height:auto; border-radius:4px;">
         </div>
@@ -15,11 +15,11 @@
         </div>
       </div>
     </div>
-    <form id="kontakt-form" class="card form" action="mailto:{{ .Site.Params.contact.email }}" method="post" enctype="text/plain">
-      <div class="grid">
-        <div class="full" style="margin:0 0 1rem 0;">
-          <p><strong>Interesse an:</strong></p>
-          <div class="paket-options">
+    <form id="kontakt-form" class="card form" method="post" novalidate>
+      <div class="grid" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+        <div class="full" style="grid-column: 1 / -1; margin:0 0 1rem 0;">
+          <p><strong>Interesse an*:</strong></p>
+          <div class="paket-options" style="display:flex; flex-wrap:wrap; gap:.75rem;">
             {{ range .Site.Data.packages.tiers }}
               <label class="paket-btn">
                 <input type="radio" name="paket" value="{{ .name }}" required>
@@ -28,13 +28,87 @@
             {{ end }}
           </div>
         </div>
-       <!-- <label>Firma*<input required name="firma" placeholder="Unternehmensname" /></label>
+
+        <label>Firma*<input required name="firma" placeholder="Unternehmensname" /></label>
+        <label>E-Mail*<input required type="email" name="email" placeholder="name@firma.de" /></label>
         <label>Kontaktperson*<input required name="kontakt" placeholder="Vor- und Nachname" /></label>
-        <label>E-Mail*<input required type="email" name="email" placeholder="name@firma.de" /></label> -->
-        <label class="full">Nachricht<textarea rows="4" placeholder="Kurze Beschreibung Ihres Ziels (Keynote, Workshop, Recruiting …)"></textarea></label>
+        <label>Telefon<input name="telefon" placeholder="+49 …" /></label>
+
+        <label class="full" style="grid-column: 1 / -1;">Nachricht*<textarea required name="nachricht" rows="4" placeholder="Kurze Beschreibung Ihres Ziels (Keynote, Workshop, Recruiting …)"></textarea></label>
+
+        <!-- Honeypot gegen Bots -->
+        <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute; left:-10000px; top:auto; width:1px; height:1px;">
       </div>
-      <button class="btn primary">Anfrage senden</button>
+
+      <button class="btn primary" type="submit">Anfrage senden</button>
       <p class="mini">Mit * markierte Felder sind Pflichtfelder.</p>
+      <div id="kontakt-status" aria-live="polite" class="mini" style="margin-top:.5rem;"></div>
     </form>
+
+<script>
+(function() {
+  const form = document.getElementById('kontakt-form');
+  const statusEl = document.getElementById('kontakt-status');
+  const webhook = '{{ with .Site.Params.integrations.contact_webhook }}{{ . }}{{ end }}';
+
+  function setStatus(msg, ok) {
+    statusEl.textContent = msg;
+    statusEl.style.color = ok ? 'inherit' : 'var(--c-warn, #b00020)';
+  }
+
+  form.addEventListener('submit', async function(ev) {
+    ev.preventDefault();
+
+    const fd = new FormData(form);
+    if (!fd.get('paket') || !fd.get('firma') || !fd.get('kontakt') || !fd.get('email') || !fd.get('nachricht')) {
+      setStatus('Bitte füllen Sie alle Pflichtfelder aus.', false);
+      return;
+    }
+
+    if (fd.get('website')) {
+      setStatus('Anfrage wurde blockiert (Spam-Verdacht).', false);
+      return;
+    }
+
+    if (!webhook) {
+      setStatus('Kein Webhook konfiguriert. Bitte setzen Sie params.integrations.contact_webhook.', false);
+      return;
+    }
+
+    const payload = {
+      paket: fd.get('paket'),
+      firma: fd.get('firma'),
+      kontakt: fd.get('kontakt'),
+      email: fd.get('email'),
+      telefon: fd.get('telefon') || '',
+      nachricht: fd.get('nachricht'),
+      meta: {
+        url: window.location.href,
+        userAgent: navigator.userAgent,
+        timestamp: new Date().toISOString()
+      }
+    };
+
+    try {
+      setStatus('Sende Anfrage …', true);
+      const res = await fetch(webhook, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+
+      if (res.ok) {
+        setStatus('Vielen Dank! Ihre Anfrage wurde übermittelt.', true);
+        form.reset();
+      } else {
+        const text = await res.text().catch(() => '');
+        setStatus('Übermittlung fehlgeschlagen (' + res.status + '). ' + (text || ''), false);
+      }
+    } catch (err) {
+      setStatus('Netzwerkfehler: ' + (err && err.message ? err.message : err), false);
+    }
+  });
+})();
+</script>
   </div>
 </section>
