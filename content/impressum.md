@@ -16,7 +16,7 @@ Registergericht: Amtsgericht Bremen, VR 6618
 St-Nr.: 60 145 09206
 
 Vertretungsberechtigter Vorstand:
-Stefanie Juch, Erke Binboga, Corvin Bischoff
+Evelyn Fröhlich, Erke Binboga, Corvin Bischoff
 
 Disclaimer – rechtliche Hinweise
 1. Haftungsbeschränkung
