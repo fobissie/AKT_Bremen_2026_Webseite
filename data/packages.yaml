@@ -1,6 +1,7 @@
 tiers:
-  - name: "Steuermann"
+  - name: "Steuermann:frau"
     ribbon: "Einstieg"
+    price: "490 €"
     features:
       - { class: "ok", text: "Logo auf den Badges der Teilnehmenden" }
       - { class: "ok", text: "Printwerbung & Goodies in Begrüßungstüten" }
@@ -11,8 +12,8 @@ tiers:
       - { class: "no", text: "Business Night" }
       - { class: "no", text: "Businessdinner" }
       - { class: "no", text: "Tagesevent" }
-  - name: "Offizier (FR, 09.01.)"
-    price: "09.01."
+  - name: "Offizier:in (FR, 09.01.)"
+    price: "1590 €"
     features:
       - { class: "ok", text: "Logo auf den Badges der Teilnehmenden" }
       - { class: "ok", text: "Printwerbung & Goodies in Begrüßungstüten" }
@@ -23,8 +24,8 @@ tiers:
       - { class: "ok", text: "Business Night" }
       - { class: "no", text: "Businessdinner" }
       - { class: "no", text: "Tagesevent" }
-  - name: "Offizier (SA, 10.01.)"
-    price: "10.01."
+  - name: "Offizier:in (SA, 10.01.)"
+    price: "1590 €"
     features:
       - { class: "ok", text: "Logo auf den Badges der Teilnehmenden" }
       - { class: "ok", text: "Printwerbung & Goodies in Begrüßungstüten" }
@@ -35,9 +36,10 @@ tiers:
       - { class: "no", text: "Business Night" }
       - { class: "ok", text: "Businessdinner" }
       - { class: "no", text: "Tagesevent" }
-  - name: "Kapitän"
+  - name: "Kapitän:in"
     accent: "accent-3"
     ribbon: "Premium"
+    price: "2990 €"
     features:
       - { class: "ok", text: "Logo auf den Badges der Teilnehmenden" }
       - { class: "ok", text: "Printwerbung & Goodies in Begrüßungstüten" }

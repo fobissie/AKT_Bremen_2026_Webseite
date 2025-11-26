@@ -20,36 +20,36 @@
 
     {{ $rest := where $tiers "name" "ne" $featuredName }}
 
-    {{ if $hasFeatured }}
-    {{ $featured := index $featuredList 0 }}
-    <div class="tiers featured-tier" style="display:flex; justify-content:center; margin-bottom:2rem;">
-      {{ $ac := $featured.accent }}
-      <article class="card tier featured {{ if (and (ne (printf "%T" $ac) "bool") (ne $ac "")) }}{{ $ac }}{{ else }}{{ if $ac }}accent{{ end }}{{ end }}" style="max-width: 420px; width:100%;"> 
-        {{ with $featured.ribbon }}<div class="ribbon">{{ . }}</div>{{ else }}<div class="ribbon">Empfehlung</div>{{ end }}
-        <h3 style="font-size:1.8rem; margin-top:0;">{{ $featured.name }}</h3>
-        <ul class="features" style="margin:0; padding-left:1.1rem; flex:1 1 auto;">
-          {{ range $featured.features }}
-            <li class="{{ .class }}">{{ .text }}</li>
-          {{ end }}
-        </ul>
-        <a class="btn primary full" href="#kontakt">Jetzt anfragen</a>
-      </article>
-    </div>
-    {{ end }}
+    <div class="tiers pyramid-grid">
+      {{ if $hasFeatured }}
+        {{ $featured := index $featuredList 0 }}
+        {{ $ac := $featured.accent }}
+        <article class="card tier featured pyramid-top {{ if (and (ne (printf "%T" $ac) "bool") (ne $ac "")) }}{{ $ac }}{{ else }}{{ if $ac }}accent{{ end }}{{ end }}">
+          {{ with $featured.ribbon }}<div class="ribbon">{{ . }}</div>{{ else }}<div class="ribbon">Empfehlung</div>{{ end }}
+          <h3 style="font-size:1.8rem; margin-top:0;">{{ $featured.name }}</h3>
+          <ul class="features" style="margin:0; padding-left:1.1rem; flex:1 1 auto;">
+            {{ range $featured.features }}
+              <li class="{{ .class }}">{{ .text }}</li>
+            {{ end }}
+          </ul>
+          {{ with $featured.price }}<p class="price" style="margin:.75rem 0 0 0;">{{ . }}</p>{{ end }}
+          <a class="btn primary full" href="#kontakt">Jetzt anfragen</a>
+        </article>
+      {{ end }}
 
-    <div class="tiers" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; width: 100%; align-items: stretch;">
       {{ range $index, $tier := $rest }}
-      {{ $ac := $tier.accent }}
-      <article class="card tier {{ if (and (ne (printf "%T" $ac) "bool") (ne $ac "")) }}{{ $ac }}{{ else }}{{ if $ac }}accent{{ end }}{{ end }}" style="display:flex; flex-direction:column; height:100%;">
-        {{ with $tier.ribbon }}<div class="ribbon">{{ . }}</div>{{ end }}
-        <h3>{{ $tier.name }}</h3>
-        <ul class="features" style="margin:0; padding-left:1.1rem; flex:1 1 auto;">
-          {{ range $tier.features }}
-            <li class="{{ .class }}">{{ .text }}</li>
-          {{ end }}
-        </ul>
-        <a class="btn primary full" href="#kontakt">Jetzt anfragen</a>
-      </article>
+        {{ $ac := $tier.accent }}
+        <article class="card tier pyramid-base {{ if (and (ne (printf "%T" $ac) "bool") (ne $ac "")) }}{{ $ac }}{{ else }}{{ if $ac }}accent{{ end }}{{ end }}">
+          {{ with $tier.ribbon }}<div class="ribbon">{{ . }}</div>{{ end }}
+          <h3>{{ $tier.name }}</h3>
+          <ul class="features" style="margin:0; padding-left:1.1rem; flex:1 1 auto;">
+            {{ range $tier.features }}
+              <li class="{{ .class }}">{{ .text }}</li>
+            {{ end }}
+          </ul>
+          {{ with $tier.price }}<p class="price" style="margin:.75rem 0 0 0;">{{ . }}</p>{{ end }}
+          <a class="btn primary full" href="#kontakt">Jetzt anfragen</a>
+        </article>
       {{ end }}
     </div>
   </div>
@@ -58,9 +58,33 @@
     <h2 class="center">Zubuchbare Pakete</h2>
     <p class="center lead" style="margin-bottom:2rem;">Add-ons, die zu einem Sponsoring-Paket hinzubuchbar sind.</p>
 
-    <div class="tiers" style="display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; align-items: stretch;">
-      {{ range .Site.Data.addons.addons }}
-      <article class="card tier addon" style="position:relative; display:flex; flex-direction:column; padding:1.25rem; min-height: 260px; height:100%;">
+    {{ $addons := .Site.Data.addons.addons }}
+    {{ $compact := where $addons "compact" true }}
+    {{ $regular := where $addons "compact" "ne" true }}
+
+    {{ if gt (len $compact) 0 }}
+    <div class="addons-compact-row">
+      {{ range $compact }}
+      <article class="addon-chip card addon-card addon-compact">
+        <div class="addon-chip-body">
+          <div>
+            <h3>{{ .name }}</h3>
+            {{ with .applies }}<span class="chip-applies">{{ . }}</span>{{ end }}
+          </div>
+          <div class="chip-meta">
+            {{ if .limited }}<span class="chip-limited">Limitiert</span>{{ end }}
+            {{ with .price }}<span class="chip-price">{{ . }}</span>{{ end }}
+          </div>
+        </div>
+        <a class="btn primary chip-btn" href="#kontakt">Jetzt anfragen</a>
+      </article>
+      {{ end }}
+    </div>
+    {{ end }}
+
+    <div class="addons-grid">
+      {{ range $regular }}
+      <article class="card tier addon addon-card{{ if .compact }} addon-compact{{ end }}">
         {{ if .limited }}
           <span class="badge badge-warn" style="position:absolute; top:12px; right:12px;">Limitiert</span>
         {{ end }}
@@ -75,14 +99,31 @@
         </div>
         {{ end }}
 
-        {{ with .examples }}
-        <ul style="margin:0; padding-left:1.1rem; flex:1 1 auto;">
-          {{ range . }}<li style="margin:.25rem 0;">{{ . }}</li>{{ end }}
-        </ul>
-        {{ end }}
+        {{ with .price }}<p class="addon-price">{{ . }}</p>{{ end }}
 
-        {{ with $.Site.Data.addons.note }}
-        <p class="mini" style="margin:.75rem 0 0 0; color:var(--muted);">{{ . }}</p>
+        <div class="addon-content" style="flex:1 1 auto; width:100%;">
+          {{ $hasInfo := .info }}
+          {{ $hasExamples := .examples }}
+          {{ if or $hasInfo $hasExamples }}
+            <ul class="addon-details">
+              {{ with .info }}
+                {{ $type := printf "%T" . }}
+                {{ if eq $type "[]interface {}" }}
+                  {{ range . }}<li>{{ . }}</li>{{ end }}
+                {{ else }}
+                  <li>{{ . }}</li>
+                {{ end }}
+              {{ end }}
+              {{ with .examples }}
+                {{ range . }}<li>{{ . }}</li>{{ end }}
+              {{ end }}
+            </ul>
+          {{ end }}
+        </div>
+
+        {{ $note := or .note $.Site.Data.addons.note }}
+        {{ with $note }}
+        <p class="mini addon-note">{{ . }}</p>
         {{ end }}
 
         <div style="margin-top: auto;">

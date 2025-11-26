@@ -1,16 +1,39 @@
 addons:
-  - name: "Sponsoring/Branding FotoBox"
+  - name: "Sponsoring / Branding FotoBox"
     limited: true
     applies: "alle Pakete"
-  - name: "Unternehmenspräsentation / Keynote"
+    compact: true
+  - name: "Business Night (Freitag)"
     limited: false
     applies: "alle Pakete"
-  - name: "Tagesevents / Workshops"
+    price: "Preis auf Anfrage"
+    info:
+      - "Präsentation mit eigenem Messestand auf der Business Night"
+      - "Direkter Austausch mit den teilnehmenden Berater:innen"
+      - "Ideale Gelegenheit zum Netzwerken und für wertvolle Kontakte"
+  - name: "Unternehmenspräsentation / Keynote (Freitag)"
+    limited: false
+    applies: "alle Pakete"
+    price: "790 €"
+    info:
+      - "15-minütige Keynote im Eröffnungsplenum"
+      - "Vorstellung Ihres Unternehmens vor rund 120 Berater:innen"
+      - "Ideal für zentrale Themen, aktuelle Projekte oder kompakte Fachbeiträge"
+  - name: "Tagesevents / Workshops (Samstag)"
     limited: false
     applies: "für Nicht-Premium"
+    price: "590 €"
     examples:
       - "Schnitzeljagd"
       - "Escape Room"
       - "Cooking Session"
       - "Krav Maga"
     note: "*Zubuchbar in Kombination mit einem Sponsoring-Paket"
+  - name: "Business Dinner (Samstag)"
+    limited: false
+    applies: "alle Pakete"
+    price: "Preis auf Anfrage"
+    info:
+      - "Exklusives Dinner mit engagierten Studierenden"
+      - "Einblicke in Erwartungen und Perspektiven zukünftiger Berater:innen"
+      - "Persönlicher Austausch in entspannter Atmosphäre auf Augenhöhe"
